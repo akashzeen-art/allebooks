@@ -1,0 +1,324 @@
+:root {
+  /* scoped via module — variables on .shelf */
+}
+
+.section {
+  position: relative;
+  overflow: hidden;
+  border-block: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(10, 14, 26, 0.42);
+  backdrop-filter: blur(2px);
+}
+
+.header {
+  position: relative;
+  z-index: 2;
+  margin: 0 auto;
+  max-width: 80rem;
+  padding: 3rem 1rem 0;
+}
+
+@media (min-width: 640px) {
+  .header {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #d4a84b;
+}
+
+.title {
+  margin: 0.5rem 0 0;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  color: #f5f0e8;
+}
+
+.subtitle {
+  margin: 0.75rem 0 0;
+  max-width: 36rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #8b93a7;
+}
+
+.shelf {
+  --columns: 3;
+  --yellow: rgba(238, 188, 31, 1);
+  --pink: rgba(255, 82, 145, 1);
+  --blue: rgba(64, 98, 187, 1);
+  --green: rgba(6, 141, 126, 1);
+  --white: rgba(248, 255, 229, 1);
+  display: grid;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  list-style: none;
+  margin: 140px -24px 100px;
+  padding: 0;
+}
+
+.cell {
+  grid-column-end: span 2;
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  margin-top: -50%;
+}
+
+.cell:nth-child(2n) {
+  grid-column-start: 2;
+}
+
+.cell::before,
+.cell::after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-size: 50% 100%, 100% 100%;
+  background-position: left, right;
+}
+
+.cell::before {
+  z-index: 0;
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+  background-repeat: no-repeat;
+  background-image:
+    linear-gradient(
+      -45deg,
+      var(--yellow) 53.5%,
+      var(--green) 53.5%,
+      var(--green) 60%,
+      var(--yellow) 60%
+    ),
+    linear-gradient(
+      45deg,
+      var(--yellow) 65.3%,
+      var(--green) 65.3%,
+      var(--green) 69.9%,
+      var(--yellow) 69.9%
+    );
+}
+
+.cell::after {
+  z-index: 0;
+  clip-path: polygon(100% 50%, 50% 100%, 0 50%, 20% 50%, 50% 80%, 80% 50%);
+  background-repeat: no-repeat;
+  background-image:
+    linear-gradient(45deg, var(--yellow) 40%, var(--green) 40%),
+    linear-gradient(-45deg, var(--yellow) 30%, var(--green) 30%);
+}
+
+.cell:nth-child(2n)::before {
+  background-image:
+    linear-gradient(
+      -45deg,
+      var(--pink) 53.5%,
+      var(--blue) 53.5%,
+      var(--blue) 60%,
+      var(--pink) 60%
+    ),
+    linear-gradient(
+      45deg,
+      var(--pink) 65.3%,
+      var(--blue) 65.3%,
+      var(--blue) 69.9%,
+      var(--pink) 69.9%
+    );
+}
+
+.cell:nth-child(2n)::after {
+  background-image:
+    linear-gradient(45deg, var(--pink) 40%, var(--blue) 40%),
+    linear-gradient(-45deg, var(--pink) 30%, var(--blue) 30%);
+}
+
+.cell:nth-child(5n)::before {
+  background-image:
+    linear-gradient(
+      -45deg,
+      var(--green) 53.5%,
+      var(--pink) 53.5%,
+      var(--pink) 60%,
+      var(--green) 60%
+    ),
+    linear-gradient(
+      45deg,
+      var(--green) 65.3%,
+      var(--pink) 65.3%,
+      var(--pink) 69.9%,
+      var(--green) 69.9%
+    );
+}
+
+.cell:nth-child(5n)::after {
+  background-image:
+    linear-gradient(45deg, var(--green) 40%, var(--pink) 40%),
+    linear-gradient(-45deg, var(--green) 30%, var(--pink) 30%);
+}
+
+.cell:nth-child(7n)::before,
+.cell:nth-child(7n-4)::before {
+  background-image:
+    linear-gradient(
+      -45deg,
+      var(--blue) 53.5%,
+      var(--white) 53.5%,
+      var(--white) 60%,
+      var(--blue) 60%
+    ),
+    linear-gradient(
+      45deg,
+      var(--blue) 65.3%,
+      var(--white) 65.3%,
+      var(--white) 69.9%,
+      var(--blue) 69.9%
+    );
+}
+
+.cell:nth-child(7n)::after,
+.cell:nth-child(7n-4)::after {
+  background-image:
+    linear-gradient(45deg, var(--blue) 40%, var(--white) 40%),
+    linear-gradient(-45deg, var(--blue) 30%, var(--white) 30%);
+}
+
+.cell:nth-child(9n)::before,
+.cell:nth-child(9n-5)::before {
+  background-image:
+    linear-gradient(
+      -45deg,
+      var(--white) 53.5%,
+      var(--green) 53.5%,
+      var(--green) 60%,
+      var(--white) 60%
+    ),
+    linear-gradient(
+      45deg,
+      var(--white) 65.3%,
+      var(--green) 65.3%,
+      var(--green) 69.9%,
+      var(--white) 69.9%
+    );
+}
+
+.cell:nth-child(9n)::after,
+.cell:nth-child(9n-5)::after {
+  background-image:
+    linear-gradient(45deg, var(--white) 40%, var(--green) 40%),
+    linear-gradient(-45deg, var(--white) 30%, var(--green) 30%);
+}
+
+.link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+}
+
+.cover {
+  position: absolute;
+  width: 43%;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-60%);
+  box-shadow: 5px -5px 10px rgba(0, 0, 0, 0.35);
+  transition: transform 0.3s ease;
+  border-radius: 2px;
+  object-fit: cover;
+  aspect-ratio: 2 / 3;
+}
+
+.link:hover .cover,
+.link:focus-visible .cover {
+  transform: translateX(-40%) translateY(-70%) rotateZ(25deg);
+}
+
+.link:focus-visible {
+  outline: none;
+}
+
+.link:focus-visible .cover {
+  outline: 2px solid #d4a84b;
+  outline-offset: 3px;
+}
+
+@media (min-width: 450px) {
+  .shelf {
+    margin-left: 24px;
+    margin-right: 24px;
+  }
+}
+
+@media (min-width: 600px) {
+  .shelf {
+    --columns: 5;
+    margin-top: 160px;
+  }
+
+  .cell:nth-child(2n) {
+    grid-column-start: auto;
+  }
+
+  .cell:nth-child(4n-1) {
+    grid-column-start: 2;
+  }
+}
+
+@media (min-width: 900px) {
+  .shelf {
+    --columns: 7;
+  }
+
+  .cell:nth-child(4n-1) {
+    grid-column-start: auto;
+  }
+
+  .cell:nth-child(6n-2) {
+    grid-column-start: 2;
+  }
+}
+
+@media (min-width: 1200px) {
+  .shelf {
+    --columns: 9;
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+
+  .cell:nth-child(6n-2) {
+    grid-column-start: auto;
+  }
+
+  .cell:nth-child(8n-3) {
+    grid-column-start: 2;
+  }
+}
+
+@media (min-width: 1500px) {
+  .shelf {
+    --columns: 11;
+  }
+
+  .cell:nth-child(8n-3) {
+    grid-column-start: auto;
+  }
+
+  .cell:nth-child(10n-4) {
+    grid-column-start: 2;
+  }
+}

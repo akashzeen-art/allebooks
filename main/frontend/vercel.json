@@ -1,0 +1,13 @@
+{
+  "rewrites": [
+    {
+      "source": "/ebook-proxy/:path*",
+      "destination": "https://ebooksnew.b-cdn.net/:path*"
+    },
+    {
+      "source": "/yoga-ebook-proxy/:path*",
+      "destination": "https://api.ameora.fun/:path*"
+    },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

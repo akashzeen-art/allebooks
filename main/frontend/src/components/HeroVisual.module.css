@@ -1,0 +1,230 @@
+.stage {
+  position: relative;
+  display: block;
+  width: min(100%, 320px);
+  height: 280px;
+  margin: 0 auto;
+  flex-shrink: 0;
+  isolation: isolate;
+}
+
+@media (min-width: 640px) {
+  .stage {
+    width: min(100%, 380px);
+    height: 360px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .stage {
+    width: 460px;
+    height: 480px;
+    margin: 0;
+  }
+}
+
+.glow {
+  position: absolute;
+  inset: 8% 5% 12%;
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse at 50% 55%, rgba(212, 168, 75, 0.28), transparent 62%),
+    radial-gradient(ellipse at 70% 40%, rgba(120, 140, 200, 0.12), transparent 55%);
+  filter: blur(8px);
+  animation: glowBreath 5.5s ease-in-out infinite;
+  z-index: 0;
+}
+
+.wave {
+  position: absolute;
+  left: 50%;
+  bottom: 6%;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 7px;
+  height: 72px;
+  width: 70%;
+  transform: translateX(-50%);
+  opacity: 0.85;
+  mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+}
+
+.bar {
+  display: block;
+  width: 5px;
+  height: 28%;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #f0d48a, #d4a84b 55%, rgba(212, 168, 75, 0.35));
+  transform-origin: bottom center;
+  animation: wavePulse 1.35s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * 0.11s);
+}
+
+.fan {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cover {
+  position: absolute;
+  width: 42%;
+  aspect-ratio: 2 / 3;
+  top: 14%;
+  left: 50%;
+  transform-origin: center bottom;
+  filter: drop-shadow(0 22px 40px rgba(0, 0, 0, 0.55));
+}
+
+.coverLink {
+  display: block;
+  height: 100%;
+  border-radius: 0.35rem;
+  overflow: hidden;
+  outline-offset: 4px;
+}
+
+.coverImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.back {
+  width: 36%;
+  top: 18%;
+  opacity: 0.78;
+  z-index: 1;
+  animation: floatBack 6.2s ease-in-out infinite;
+}
+
+.mid {
+  width: 40%;
+  top: 12%;
+  opacity: 0.88;
+  z-index: 2;
+  animation: floatMid 6.8s ease-in-out infinite;
+  animation-delay: -2.1s;
+}
+
+.front {
+  width: 46%;
+  top: 20%;
+  z-index: 3;
+  filter: drop-shadow(0 28px 48px rgba(0, 0, 0, 0.65));
+  animation: floatFront 5.6s ease-in-out infinite;
+  animation-delay: -3.8s;
+}
+
+.cues {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  transform: translateX(-50%);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(232, 192, 106, 0.9);
+  white-space: nowrap;
+}
+
+.cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.cueIcon {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.cueDot {
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(232, 192, 106, 0.45);
+}
+
+@keyframes glowBreath {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes wavePulse {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes floatBack {
+  0%,
+  100% {
+    transform: translateX(-118%) rotate(-14deg) translateY(0);
+  }
+  50% {
+    transform: translateX(-118%) rotate(-14deg) translateY(-12px);
+  }
+}
+
+@keyframes floatMid {
+  0%,
+  100% {
+    transform: translateX(18%) rotate(11deg) translateY(0);
+  }
+  50% {
+    transform: translateX(18%) rotate(11deg) translateY(-14px);
+  }
+}
+
+@keyframes floatFront {
+  0%,
+  100% {
+    transform: translateX(-48%) rotate(-3deg) translateY(0);
+  }
+  50% {
+    transform: translateX(-48%) rotate(-3deg) translateY(-8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow,
+  .bar,
+  .back,
+  .mid,
+  .front {
+    animation: none !important;
+  }
+
+  .back {
+    transform: translateX(-118%) rotate(-14deg);
+  }
+  .mid {
+    transform: translateX(18%) rotate(11deg);
+  }
+  .front {
+    transform: translateX(-48%) rotate(-3deg);
+  }
+}

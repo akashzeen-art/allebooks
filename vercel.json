@@ -1,0 +1,17 @@
+{
+  "framework": "vite",
+  "installCommand": "npm install --prefix main/frontend",
+  "buildCommand": "npm run build --prefix main/frontend",
+  "outputDirectory": "main/frontend/dist",
+  "rewrites": [
+    {
+      "source": "/ebook-proxy/:path*",
+      "destination": "https://ebooksnew.b-cdn.net/:path*"
+    },
+    {
+      "source": "/yoga-ebook-proxy/:path*",
+      "destination": "https://api.ameora.fun/:path*"
+    },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
